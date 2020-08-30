@@ -69,12 +69,12 @@ public class Controller implements Initializable {
     private void checkFlag(){
         if(!flag){ //for play
             flag = true;
-            Image image = new Image(getClass().getResourceAsStream("/playButton.png"));
+            Image image = new Image(getClass().getResourceAsStream("playButton.png"));
             PauseSongButton.setImage(image);
             mediaPlayer.play();
         }else{ //for stop
             flag = false;
-            Image image = new Image(getClass().getResourceAsStream("/pauseButton.png"));
+            Image image = new Image(getClass().getResourceAsStream("pauseButton.png"));
             PauseSongButton.setImage(image);
             mediaPlayer.pause();
         }
@@ -88,7 +88,7 @@ public class Controller implements Initializable {
             count = files.size()-1;
         }
 
-        Image image = new Image(getClass().getResourceAsStream("/playButton.png"));
+        Image image = new Image(getClass().getResourceAsStream("playButton.png"));
         PauseSongButton.setImage(image);
         flag = true;
 
@@ -107,7 +107,7 @@ public class Controller implements Initializable {
             count = 0;
         }
 
-        Image image = new Image(getClass().getResourceAsStream("/playButton.png"));
+        Image image = new Image(getClass().getResourceAsStream("playButton.png"));
         PauseSongButton.setImage(image);
         flag = true;
 
@@ -133,7 +133,7 @@ public class Controller implements Initializable {
         files = files_output();
         count = 0;
         flag = false;
-        Image image = new Image(getClass().getResourceAsStream("/pauseButton.png"));
+        Image image = new Image(getClass().getResourceAsStream("pauseButton.png"));
         PauseSongButton.setImage(image);
 
         File soundFile = files.get(count);
@@ -227,9 +227,9 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            Image image = new Image(getClass().getResourceAsStream("/pauseButton.png"));
-            Image image1 = new Image(getClass().getResourceAsStream("/prevSongButton.png"));
-            Image image2 = new Image(getClass().getResourceAsStream("/nextSongButton.png"));
+            Image image = new Image(getClass().getResourceAsStream("pauseButton.png"));
+            Image image1 = new Image(getClass().getResourceAsStream("prevSongButton.png"));
+            Image image2 = new Image(getClass().getResourceAsStream("nextSongButton.png"));
             PauseSongButton.setImage(image);
             PrevSongButton.setImage(image1);
             NextSongButton.setImage(image2);
