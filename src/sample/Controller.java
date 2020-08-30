@@ -3,11 +3,8 @@ package sample;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-
-import java.awt.event.MouseEvent;
 import java.io.*;
 import java.net.URL;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
@@ -37,7 +34,7 @@ public class Controller implements Initializable {
     public static int count = 0;
     private boolean flag = false;
     String Directory = "C:\\Users\\"+System.getProperty("user.name")+"\\Music";
-    ArrayList<File> files = new ArrayList<>(files_output());
+    ArrayList<File> files = new ArrayList<File>(files_output());
 
     @FXML
     private ResourceBundle resources;
@@ -63,8 +60,6 @@ public class Controller implements Initializable {
     @FXML
     private AnchorPane anchorPane;
 
-    private Button Button;
-
 
     @FXML
     private void actionPauseSongButton(){
@@ -74,12 +69,12 @@ public class Controller implements Initializable {
     private void checkFlag(){
         if(!flag){ //for play
             flag = true;
-            Image image = new Image(getClass().getResourceAsStream("playButton.png"));
+            Image image = new Image(getClass().getResourceAsStream("/playButton.png"));
             PauseSongButton.setImage(image);
             mediaPlayer.play();
         }else{ //for stop
             flag = false;
-            Image image = new Image(getClass().getResourceAsStream("pauseButton.png"));
+            Image image = new Image(getClass().getResourceAsStream("/pauseButton.png"));
             PauseSongButton.setImage(image);
             mediaPlayer.pause();
         }
@@ -93,7 +88,7 @@ public class Controller implements Initializable {
             count = files.size()-1;
         }
 
-        Image image = new Image(getClass().getResourceAsStream("playButton.png"));
+        Image image = new Image(getClass().getResourceAsStream("/playButton.png"));
         PauseSongButton.setImage(image);
         flag = true;
 
@@ -112,7 +107,7 @@ public class Controller implements Initializable {
             count = 0;
         }
 
-        Image image = new Image(getClass().getResourceAsStream("playButton.png"));
+        Image image = new Image(getClass().getResourceAsStream("/playButton.png"));
         PauseSongButton.setImage(image);
         flag = true;
 
@@ -121,7 +116,8 @@ public class Controller implements Initializable {
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
     }
-    public String removeCharAtDirectoryname(String directory){
+
+    public String removeRubbishInDirectoryName(String directory){
         directory = directory.replace("file:/", "");
         directory = directory.replace("/","\\");
         directory = directory.substring(0,directory.length()-1);
@@ -137,7 +133,7 @@ public class Controller implements Initializable {
         files = files_output();
         count = 0;
         flag = false;
-        Image image = new Image(getClass().getResourceAsStream("pauseButton.png"));
+        Image image = new Image(getClass().getResourceAsStream("/pauseButton.png"));
         PauseSongButton.setImage(image);
 
         File soundFile = files.get(count);
@@ -151,7 +147,7 @@ public class Controller implements Initializable {
         final DirectoryChooser directoryChooser = new DirectoryChooser();
         Stage stage = (Stage) gridPane.getScene().getWindow();
         File directory = directoryChooser.showDialog(stage);
-        textField.setText(removeCharAtDirectoryname(directory.toURI().toString()));
+        textField.setText(removeRubbishInDirectoryName(directory.toURI().toString()));
     }
 
     public void changeAnchorPane(){
@@ -219,9 +215,9 @@ public class Controller implements Initializable {
                 }
             }
             return withoutRubbish;
-        } catch (Exception exception){
+        } catch (Exception e){
             System.out.println("бан в files_output");
-            System.out.println(exception);
+            System.out.println(e.getStackTrace());
         }
         return null;
     }
@@ -230,70 +226,21 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-         Image image = new Image(getClass().getResourceAsStream("pauseButton.png"));
-         Image image1 = new Image(getClass().getResourceAsStream("prevSongButton.png"));
-         Image image2 = new Image(getClass().getResourceAsStream("nextSongButton.png"));
-         PauseSongButton.setImage(image);
-         PrevSongButton.setImage(image1);
-         NextSongButton.setImage(image2);
+        try {
+            Image image = new Image(getClass().getResourceAsStream("/pauseButton.png"));
+            Image image1 = new Image(getClass().getResourceAsStream("/prevSongButton.png"));
+            Image image2 = new Image(getClass().getResourceAsStream("/nextSongButton.png"));
+            PauseSongButton.setImage(image);
+            PrevSongButton.setImage(image1);
+            NextSongButton.setImage(image2);
 
-        {
+
             File soundFile = files.get(count);
-            /*
-            Double layoutXButton = 5.0;
-            Double layoutYButton = 0.0;
-            int id = 0;
-            ArrayList<Button> arrayList = new ArrayList<>();
-
-            for (File file : files) {
-                try {
-                    InputStream input = new FileInputStream(Directory + "\\" + file.getName());
-                    ContentHandler contentHandler = new DefaultHandler();
-                    Metadata metadata = new Metadata();
-                    Parser parser = new Mp3Parser();
-                    ParseContext parseContext = new ParseContext();
-                    parser.parse(input, contentHandler, metadata, parseContext);
-                    input.close();
-
-                    arrayList.add(new Button( metadata.get("xmpDM:artist") + "  " + metadata.get("title") + "   " + metadata.get("xmpDM:duration")));
-                } catch (TikaException | IOException | SAXException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            for (Button button: arrayList) {
-
-                button.setId(""+id);
-                button.setOnAction(MouseEvent ->{
-                    //тут прям лютый говнокод
-                    for(int i = 0;i < files.size();i++){
-                        mediaPlayer.stop();
-                        String s = button.getId();
-                        int num = Integer.parseInt(s);
-                        if (i == num){
-                            count = i;
-                            File song = files.get(count);
-                            Media hit = new Media(new File(Directory + "\\" + song.getName()).toURI().toString());
-                            mediaPlayer = new MediaPlayer(hit);
-                        }
-                    }
-                });
-                id++;
-                button.setLayoutX(layoutXButton);
-                button.setLayoutY(layoutYButton);
-                layoutYButton+=25;
-                anchorPane.getChildren().add(button);
-            } */
             changeAnchorPane();
-
-            Media hit = new Media(new File(Directory +"\\" + soundFile.getName()).toURI().toString());
+            Media hit = new Media(new File(Directory + "\\" + soundFile.getName()).toURI().toString());
             mediaPlayer = new MediaPlayer(hit);
+        }catch (Exception e){
+            System.out.println(e.getStackTrace());
         }
-
-
-
     }
-
-
-
 }
