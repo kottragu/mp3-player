@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?language javascript?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="530.0" style="-fx-background-color: #321011;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="420.0" minWidth="420.0" prefWidth="420.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="450.0" minHeight="450.0" prefHeight="450.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="70.0" minHeight="70.0" prefHeight="70.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <GridPane prefHeight="80.0" prefWidth="388.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="190.0" prefWidth="190.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="70.0" minHeight="70.0" prefHeight="70.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <children>
+                          <ImageView fx:id="PrevSongButton" fitHeight="50.0" fitWidth="50.0" onMousePressed="#actionPrevSongButton" pickOnBounds="true" preserveRatio="true" />
+                    </children></HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
+                    <children>
+                          <ImageView fx:id="PauseSongButton" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#actionPauseSongButton" pickOnBounds="true" preserveRatio="true" />
+                    </children></HBox>
+                <HBox prefHeight="110.0" prefWidth="109.0" GridPane.columnIndex="3">
+                    <children>
+                          <ImageView fx:id="NextSongButton" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#actionNextSongButton" pickOnBounds="true" preserveRatio="true" />
+                    </children></HBox>
+            </children>
+        </GridPane>
+        <HBox prefHeight="446.0" prefWidth="404.0" GridPane.columnIndex="1">
+         <children>
+            <AnchorPane fx:id="anchorPane" prefHeight="420.0" prefWidth="420.0">
+               <children>
+               </children></AnchorPane>
+         </children></HBox>
+        <GridPane alignment="TOP_RIGHT" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="57.0" minHeight="57.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="35.0" minHeight="35.0" percentHeight="0.0" prefHeight="35.0" valignment="CENTER" vgrow="NEVER" />
+                <RowConstraints fillHeight="false" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+                <RowConstraints maxHeight="67.0" minHeight="67.0" prefHeight="67.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="83.0" minHeight="83.0" prefHeight="83.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <TextField fx:id="textField" prefHeight="25.0" prefWidth="109.0" promptText="Input new addres" style="-fx-background-color: #000000; -fx-border-color: white;" GridPane.rowIndex="1" />
+                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                    <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                            <children>
+                                <Button fx:id="buttonApply" alignment="CENTER" layoutX="63.0" layoutY="1.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#buttonApplyClicked" prefHeight="28.0" style="-fx-text-fill: #ff7f50; -fx-background-color: #000000; -fx-border-color: black;" text="apply" />
+                                <Button fx:id="chooseDirectoryButton" layoutY="1.0" maxHeight="28.0" maxWidth="60.0" minHeight="28.0" minWidth="60.0" mnemonicParsing="false" onMouseClicked="#cDBClicked" prefHeight="28.0" prefWidth="60.0" style="-fx-text-fill: #ff7f50; -fx-background-color: #000000; -fx-border-color: black;" text="change" />
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </HBox>
+            </children>
+        </GridPane>
+    </children>
+</GridPane>
